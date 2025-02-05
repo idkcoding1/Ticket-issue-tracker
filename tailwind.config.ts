@@ -9,6 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        'coral': {
+          500: '#FF7F6E', 
+        },
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

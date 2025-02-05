@@ -1,21 +1,40 @@
+'use client';
 import { link } from 'fs';
 import Link from 'next/link'
+import classNames from 'classnames';
 import React from 'react'
 import { FaTicketAlt } from "react-icons/fa";
+import {usePathname} from 'next/navigation';
 
 const NavBar = () => {
+  const currentPath = usePathname();
+  console.log(currentPath);
   const links =[
     {label:'Dashboard', href:'/'},
-    {label:'issues', href:'/issues'}
+    {label:'Issues', href:'/issues'},
+    {label:'About', href:'/about'}
+  
   ]
     return (
 
-    <nav className='flex space-x-6 border-b-4 px-5 h-14 items-center mb-5'>
-        <Link href='/'> <FaTicketAlt/> </Link>
-        <ul className='flex space-x-6'>
-            {links.map(link =><Link key={link.href} href={link.href} className='text-zinc-500 hover:text-zinc-800 transition-colors'>{link.label}</Link>)}
-            <li></li>
-            <li><Link href='/issues' className='text-zinc-500 hover:text-zinc-800'>Issues</Link></li>
+  <nav className='flex space-x-6 border-b-4 px-5 h-14 items-center mb-5'>
+        <Link href='/' className='mr-72'> <FaTicketAlt/> </Link>
+        <ul className='flex space-x-6 ' >
+            {links.map(link => 
+            <Link 
+            key={link.href} 
+            
+            // className={`${link.href === currentPath ? 'text-zinc-950':  'text-zinc-500'} hover:text-zinc-800 transition-colors`}
+           className={classNames({
+            'text-zinc-950':link.href === currentPath,
+            'text-zinc-500':link.href != currentPath,
+            'hover:text-zinc-800 transition-colors': true 
+           })}
+           href={link.href} >
+              {link.label}
+            
+            </Link>)}
+          
         </ul>
     </nav>    
 )
