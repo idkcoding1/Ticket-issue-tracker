@@ -1,8 +1,13 @@
+import { Box } from '@radix-ui/themes'
 import React from 'react'
+import { Skeleton } from '@/app/components/index'
 
 const LoadingNewissue = () => {
   return (
-    <div>LoadingNewissue...</div>
+    <Box className='max-w-xl'>
+      <Skeleton/>
+      <Skeleton height='20rem'/>
+    </Box>
   )
 }
 
