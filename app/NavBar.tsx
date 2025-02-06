@@ -18,7 +18,7 @@ const NavBar = () => {
     return (
 
   <nav className='flex space-x-6 border-b-4 px-5 h-14 items-center mb-5'>
-        <Link href='/' className='mr-72'> <FaTicketAlt/> </Link>
+        <Link href='/' > <FaTicketAlt/> </Link>
         <ul className='flex space-x-6 ' >
             {links.map(link => 
             <Link 
