@@ -18,6 +18,7 @@ import Spinner from '@/app/components/Spinner';
 type Issueform = z.infer<typeof createIssueTracker>
 
  const NewIssuepage = () => {
+  
     const {register, control, handleSubmit, formState:{errors}} = useForm<Issueform>({
       resolver: zodResolver(createIssueTracker)
     });
