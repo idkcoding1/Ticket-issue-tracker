@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes'
-import React, { Children, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 
 const ErrorMessage = ({children}: PropsWithChildren) => {
   

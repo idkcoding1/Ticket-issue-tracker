@@ -46,5 +46,8 @@ const  Issuepage = async() => {
     </div>
   )
 }
+// export const dynamic = 'force-dynamic'
 
+export const revalidate = 60;
+// after every second (0,60 ) the page will be refreshed
 export default Issuepage

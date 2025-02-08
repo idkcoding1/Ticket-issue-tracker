@@ -1,34 +1,27 @@
-import IssueStatusBadge from '@/app/components/IssueStatusBadge';
 import { prisma } from '@/prisma/client'
-import { Card, Flex } from '@radix-ui/themes';
-import delay from 'delay';
+import { Box, Flex, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
+import Editissuebutton from './edit/Editissuebutton';
+import Issuedetail from './Issuedetail';
+import DeleteIssuebutton from './DeleteIssuebutton';
 
-interface Props {
-    params: Promise<{
-        id: string
-    }> | {
-        id: string
-    }
-}
 
-const IssueDetailPage = async ({ params }: Props) => {
-    // Await the params object
-    const resolvedParams = await params;
+export type paramsType = Promise<{ id: string }>;
+
+const IssueDetailPage = async (props:{ params:paramsType}) => {
+   
+    const { id } = await props.params;
+  const issueid = Number(id);
     
-    await delay(2000);
+   
 
-    // Convert the ID to a number using the resolved params
-    const issueId = parseInt(resolvedParams.id);
-
-    if (isNaN(issueId)) {
+    if (isNaN(issueid)) {
         notFound();
     }
 
     const issue = await prisma.issue.findUnique({
-        where: { id: issueId }
+        where: { id: issueid }
     });
 
     if (!issue) {
@@ -36,16 +29,20 @@ const IssueDetailPage = async ({ params }: Props) => {
     }
 
     return (
-        <div>
-            <h1 className="text-3xl">{issue.title}</h1>
-            <Flex className="space-x-3 my-3">
-                <IssueStatusBadge status={issue.status} />
-                <p className="italic">{issue.createdAt.toDateString()}</p>
+        <Grid columns={{initial:"1", md:"5"}} gap='4' >
+            <Box className='col-span-4 md:col-span-4'>
+                <Issuedetail issue={issue}/>
+            </Box>
+            <Box>
+            <Flex direction='column' gap='3'>
+
+                    <Editissuebutton issueId={issue.id}/>  
+                    <DeleteIssuebutton issueId={issue.id}/>
+            
             </Flex>
-            <Card>
-                <ReactMarkdown>{issue.description}</ReactMarkdown>
-            </Card>
-        </div>
+            </Box>
+    
+        </Grid>
     );
 };
 
