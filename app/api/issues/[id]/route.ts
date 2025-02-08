@@ -1,5 +1,7 @@
 import { IssueTracker } from "@/app/Validationschema";
 import { prisma } from "@/prisma/client";
+import { Param } from "@prisma/client/runtime/library";
+import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -33,4 +35,18 @@ export async function PATCH(request: NextRequest,props:{ params:paramsType}){
    });
    return NextResponse.json(updatedissue);
 
+}
+
+export async function DELETE(request: NextRequest,props:{ params:paramsType}){
+    
+   const issue= await prisma.issue.findUnique({
+        where: {id:parseInt((await props.params).id)}
+    });
+    if(!issue)
+        return NextResponse.json({error:'invalid issue'},{status:404})
+    await prisma.issue.delete({
+        where: {id: issue.id} 
+    });
+
+    return NextResponse.json({});
 }
