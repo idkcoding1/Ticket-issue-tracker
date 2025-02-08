@@ -1,5 +1,5 @@
 
-import Issueform from "../_components/Issueform";
+import Issueform from "../../_components/Issueform";
 
 
 

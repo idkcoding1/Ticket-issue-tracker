@@ -10,7 +10,7 @@ const NavBar = () => {
   console.log(currentPath);
   const links =[
     {label:'Dashboard', href:'/'},
-    {label:'Issues', href:'/issues'},
+    {label:'Issues', href:'/issues/list'},
     {label:'About', href:'/about'}
   
   ]

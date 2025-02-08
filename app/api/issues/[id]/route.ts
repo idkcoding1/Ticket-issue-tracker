@@ -2,6 +2,7 @@ import { IssueTracker } from "@/app/Validationschema";
 import { prisma } from "@/prisma/client";
 import { Param } from "@prisma/client/runtime/library";
 import { error } from "console";
+import delay from "delay";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -39,7 +40,7 @@ export async function PATCH(request: NextRequest,props:{ params:paramsType}){
 
 export async function DELETE(request: NextRequest,props:{ params:paramsType}){
     
-   const issue= await prisma.issue.findUnique({
+    const issue= await prisma.issue.findUnique({
         where: {id:parseInt((await props.params).id)}
     });
     if(!issue)
