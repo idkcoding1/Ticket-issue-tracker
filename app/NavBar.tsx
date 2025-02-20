@@ -1,13 +1,17 @@
 'use client';
+import {Skeleton } from '@/app/components'
 import Link from 'next/link'
 import classNames from 'classnames';
 import React from 'react'
 import { FaTicketAlt } from "react-icons/fa";
 import {usePathname} from 'next/navigation';
+import { useSession } from "next-auth/react";
+import { Session } from 'inspector/promises';
+import { Avatar, Box, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 
 const NavBar = () => {
   const currentPath = usePathname();
-  console.log(currentPath);
+  const {status, data: session} = useSession();
   const links =[
     {label:'Dashboard', href:'/'},
     {label:'Issues', href:'/issues/list'},
@@ -16,14 +20,17 @@ const NavBar = () => {
   ]
     return (
 
-  <nav className='flex space-x-6 border-b-4 px-5 h-14 items-center mb-5'>
-        <Link href='/' > <FaTicketAlt/> </Link>
-        <ul className='flex space-x-6 ' >
+  <nav className=' border-b-4 px-5 py-3 mb-5'>
+    <Container>
+    <Flex justify='between'>
+      <Flex align={'center'} gap="3">  
+         <Link href='/' > <FaTicketAlt/> </Link>
+        <ul className='flex space-x-6'>
             {links.map(link => 
+             <li 
+             key={link.href} 
+             >
             <Link 
-            key={link.href} 
-            
-            // className={`${link.href === currentPath ? 'text-zinc-950':  'text-zinc-500'} hover:text-zinc-800 transition-colors`}
            className={classNames({
             'text-zinc-950':link.href === currentPath,
             'text-zinc-500':link.href != currentPath,
@@ -31,11 +38,42 @@ const NavBar = () => {
            })}
            href={link.href} >
               {link.label}
-            
-            </Link>)}
-          
+            </Link>
+          </li>)}      
         </ul>
-    </nav>    
+      </Flex>
+
+      <Box>
+        {status === "loading" && <Skeleton width="3rem"/>}
+          {status === "authenticated" && (
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <Avatar src={session.user?.image!}
+                fallback="?"
+                size='2'
+                radius='full'
+                className='cursor-pointer'
+                />
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                <DropdownMenu.Label>
+                  <Text>
+                    {session.user!.email!}
+                  </Text>
+                </DropdownMenu.Label>
+                <DropdownMenu.Item>
+                <Link href="/api/auth/signout">logOut</Link>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          )}
+          {status === "unauthenticated" && (<Link href="/api/auth/signin">login</Link>)}
+
+        </Box>
+    </Flex>
+    </Container>
+      </nav>    
+      
 )
 }
 

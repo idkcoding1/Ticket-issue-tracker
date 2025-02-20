@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import "@radix-ui/themes/styles.css";
 import { Container, Theme } from "@radix-ui/themes";
 import './theme-config.css';
+import AuthProvider from "./auth/Provider";
 
 
 const geist = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${geist.variable} ${geistMono.variable} antialiased`}
       >
+        <AuthProvider>
         <Theme accentColor="teal" radius="small" scaling="110%">
         <NavBar/>
         <main className="p-6">
@@ -43,7 +45,7 @@ export default function RootLayout({
         </main>
 
         </Theme>
-        
+        </AuthProvider>
       </body>
     </html>
   );
