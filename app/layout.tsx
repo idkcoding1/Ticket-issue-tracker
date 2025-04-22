@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import NavBar from "./NavBar";
 import "@radix-ui/themes/styles.css";

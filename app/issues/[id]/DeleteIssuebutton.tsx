@@ -56,7 +56,7 @@ import React, { useState } from 'react'
             <AlertDialog.Description>
                   Thiss Issue could not be deleted
             </AlertDialog.Description>        
-                <Button color='gray' variant='soft' className='mt-3' onClick={()=> setError(true)}> ok</Button>
+                <Button color='gray' variant='soft' className='mt-3' onClick={()=> setError(false)}> ok</Button>
         
             </AlertDialog.Content>        
         </AlertDialog.Root>

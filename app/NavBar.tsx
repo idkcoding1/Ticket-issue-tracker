@@ -44,10 +44,10 @@ const NavBar = () => {
 
       <Box>
         {status === "loading" && <Skeleton width="3rem"/>}
-          {status === "authenticated" && (
+          {status === "authenticated" && session?.user&&(
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
-                <Avatar src={session.user?.image!}
+                <Avatar src={session.user?.image || undefined}
                 fallback="?"
                 size='2'
                 radius='full'
