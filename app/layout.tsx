@@ -12,16 +12,6 @@ const roboto = Roboto({
   subsets: ['latin'],
   weight: ['400']
 })
-const geist = Geist({
-	subsets: ["latin"],
-	display: "swap",
-	variable: "--font-geist",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",

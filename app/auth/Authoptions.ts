@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
+import { NextAuthOptions } from "next-auth"
 import Googleprovider from "next-auth/providers/google"
  
 const authoptions: NextAuthOptions ={

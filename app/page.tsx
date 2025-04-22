@@ -1,6 +1,5 @@
 import Image from "next/image";
 import img from "@/public/images/logo.png";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Home() {
