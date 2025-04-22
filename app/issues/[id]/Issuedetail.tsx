@@ -1,4 +1,4 @@
-import { IssueStatusBadge } from '@/app/components'
+import { IssueStatusBadge } from '@/components'
 import { Flex, Card } from '@radix-ui/themes'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'

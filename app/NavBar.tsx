@@ -1,12 +1,11 @@
 'use client';
-import {Skeleton } from '@/app/components'
+import {Skeleton } from '@/components'
 import Link from 'next/link'
 import classNames from 'classnames';
 import React from 'react'
 import { FaTicketAlt } from "react-icons/fa";
 import {usePathname} from 'next/navigation';
 import { useSession } from "next-auth/react";
-import { Session } from 'inspector/promises';
 import { Avatar, Box, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 
 const NavBar = () => {

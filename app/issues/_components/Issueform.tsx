@@ -1,6 +1,6 @@
 'use client';
 import { Button, Callout, TextField } from '@radix-ui/themes';
-import { ErrorMessage, Spinner } from '@/app/components/index'
+import { ErrorMessage, Spinner } from '@/components/index'
 import { IssueTracker } from '@/app/Validationschema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
@@ -18,10 +18,8 @@ const SimpleMDE= dynamic(()=> import('react-simplemde-editor'),
   
 type Issueformdata = z.infer<typeof IssueTracker>
 
-interface Props {
-  issue ?:Issue
-}
- const Issueform = ({issue}:Props) => {
+
+ const Issueform = ({issue}:{issue ?:Issue}) => {
   
     const {register, control, handleSubmit, formState:{errors}} = useForm<Issueformdata>({
       resolver: zodResolver(IssueTracker)
@@ -64,7 +62,7 @@ interface Props {
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
-          control={control}
+          control={control} 
           defaultValue={issue?.description}
           render={({ field }) => (
             <SimpleMDE placeholder="Description" {...field} />

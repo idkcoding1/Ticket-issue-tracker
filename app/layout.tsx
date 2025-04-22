@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import NavBar from "./NavBar";
 import "@radix-ui/themes/styles.css";
@@ -8,6 +8,10 @@ import './theme-config.css';
 import AuthProvider from "./auth/Provider";
 
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400']
+})
 const geist = Geist({
 	subsets: ["latin"],
 	display: "swap",
@@ -30,9 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="winter">
       <body
-        className={`${geist.variable} ${geistMono.variable} antialiased`}
+        className={roboto.className}
       >
         <AuthProvider>
         <Theme accentColor="teal" radius="small" scaling="110%">

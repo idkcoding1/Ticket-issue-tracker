@@ -6,6 +6,7 @@ const AuthProvider = ({children}: PropsWithChildren) => {
   return (
     <SessionProvider>
         {children}
+        
     </SessionProvider>
   )
 }

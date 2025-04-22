@@ -1,5 +1,5 @@
 import React from "react";
-import Issueform from "../_components/Issueform";
+import Issueform from "../../_components/Issueform";
 import { prisma } from "@/prisma/client";
 import { notFound } from "next/navigation";
 
@@ -10,7 +10,7 @@ const EditIssuePage = async (props:{ params:paramsType}) => {
   const issueid = Number(id);
 
   if (isNaN(issueid)) {
-    notFound(); // Handle invalid ID early
+    notFound(); 
   }
   const issue = await prisma.issue.findUnique({
     where: {id :issueid },

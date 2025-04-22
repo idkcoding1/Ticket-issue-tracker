@@ -1,6 +1,6 @@
 import { Box, Card, Flex } from '@radix-ui/themes'
 import React from 'react'
-import {Skeleton} from '@/app/components/index'
+import {Skeleton} from '@/components/index'
 
 const Loadingissuedetail = () => {
   return (
