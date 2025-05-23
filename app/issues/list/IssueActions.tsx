@@ -5,11 +5,11 @@ import React from 'react'
 const IssueActions = () => {
   return (
     <div className='mb-5'>
-      <Link href='/issues/new'>
-        <Button>New Issue</Button>
-      </Link>
+      <Button>
+        <Link href='/issues/new'>New Issue</Link>
+      </Button>
     </div>
   )
 }
 
-export default IssueActions
+export default IssueActions 
